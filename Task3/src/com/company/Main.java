@@ -1,22 +1,30 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Main {
+
+    public static int multi(int max, int k1, int k2) {
+        int sum = 0;
+        for (int i = 0; i < max; i++) {
+            if (i % k1 == 0 || i % k2 == 0) {
+                sum += i;
+            }
+        }
+        return sum;
+    }
 
     public static void main(String[] args) {
 
-        int sum1 = 0;
-        int sum2 = 0;
+        Scanner scan = new Scanner(System.in);
 
-        for (int i = 0; i < 1000; i++) {
-            if (i % 3 == 0 || i % 5 == 0) {
-                sum1 += i;
-            }
-            if (i % 4 == 0 || i % 7 == 0) {
-                sum2 += i;
-            }
-        }
-        System.out.println("Сумма чисел, кратных 3 и 5 меньше 1000 равна " + sum1);
-        System.out.println("Сумма чисел, кратных 4 и 7 меньше 1000 равна " + sum2);
+        System.out.print("Введите max: ");
+        int max = scan.nextInt();
+        System.out.print("Введите первый делитель: ");
+        int k1 = scan.nextInt();
+        System.out.print("Введите второй делитель: ");
+        int k2 = scan.nextInt();
 
+        System.out.println("Сумма чисел, кратных " + k1 + " и " + k2 + " меньше " + max + " равна " + multi(max, k1, k2));
     }
 }
