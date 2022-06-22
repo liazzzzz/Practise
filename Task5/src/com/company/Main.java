@@ -6,13 +6,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        LightBulb lightbulb = new LightBulb();
-        lightbulb.setBulbColor(Color.red);
-        System.out.println(lightbulb.getBulbColor());
-
-        lightbulb.turnOnBulb();
-        lightbulb.setBulbWorking(false);
-        System.out.println(lightbulb.isBulbSwitchOn());
+        LightBulb lightbulb = new LightBulb(Color.black);
+        lightbulb.turnOn();
+        lightbulb.showState();
 
     }
 }

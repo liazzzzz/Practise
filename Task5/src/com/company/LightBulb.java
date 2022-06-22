@@ -4,51 +4,69 @@ import java.awt.*;
 
 public class LightBulb {
 
-    public Color bulbColor;
-    public boolean bulbSwitchOn;
-    public boolean bulbWorking;
+    private Color color;
+    private boolean isSwitchOn;
+    private boolean isBroken;
 
     public LightBulb() {
-        bulbColor = Color.white;
-        bulbSwitchOn = false;
-        bulbWorking = true;
+        isSwitchOn = false;
+        isBroken = false;
     }
 
-    public Color getBulbColor() {
-        return bulbColor;
+    public LightBulb(Color color) {
+        this.color = color;
+        isSwitchOn = false;
+        isBroken = false;
     }
 
-    public void setBulbColor(Color bulbColor) {
-        this.bulbColor = bulbColor;
+    public Color getColor() {
+        return color;
     }
 
-    public boolean isBulbSwitchOn() {
-        return bulbSwitchOn;
+    public void setColor(Color color) {
+        if (this.color == null) {
+            this.color = color;
+        }
     }
 
-    public void turnOnBulb() {
-        if (isBulbWorking()) {
-            bulbSwitchOn = true;
-            System.out.println("Лампочка включена");
+    public boolean isSwitchOn() {
+        return isSwitchOn;
+    }
+
+    public void turnOn() {
+        if (!isBroken()) {
+            isSwitchOn = true;
+        }
+    }
+
+    public void turnOff() {
+        isSwitchOn = false;
+    }
+
+    public boolean isBroken() {
+        return isBroken;
+    }
+
+    public void brokeBulb() {
+        isBroken = true;
+        isSwitchOn = false;
+    }
+
+    public void fixBulb() {
+        isBroken = false;
+    }
+
+    public void showState() {
+        System.out.println("Цвет лампочки: " + color.toString());
+        if (isSwitchOn) {
+            System.out.println("Лампочка работает");
         } else {
-            System.out.println("Лампочка сломана");
+            if (isBroken) {
+                System.out.println("Лампочка сломана");
+            } else {
+                System.out.println("Лампочка выключена");
+            }
         }
-    }
-
-    public void turnOffBulb() {
-        bulbSwitchOn = false;
-        System.out.println("Лампочка выключена");
-    }
-
-    public boolean isBulbWorking() {
-        return bulbWorking;
-    }
-
-    public void setBulbWorking(boolean bulbWorking) {
-        if (!bulbWorking) {
-            bulbSwitchOn = false;
-        }
-        this.bulbWorking = bulbWorking;
     }
 
 }
