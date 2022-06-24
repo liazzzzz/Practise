@@ -5,17 +5,12 @@ import java.awt.*;
 public class LightBulb {
 
     private Color color;
-    private boolean isSwitchOn;
+    private boolean isOn;
     private boolean isBroken;
-
-    public LightBulb() {
-        isSwitchOn = false;
-        isBroken = false;
-    }
 
     public LightBulb(Color color) {
         this.color = color;
-        isSwitchOn = false;
+        isOn = false;
         isBroken = false;
     }
 
@@ -23,24 +18,18 @@ public class LightBulb {
         return color;
     }
 
-    public void setColor(Color color) {
-        if (this.color == null) {
-            this.color = color;
-        }
-    }
-
-    public boolean isSwitchOn() {
-        return isSwitchOn;
+    public boolean isOn() {
+        return isOn;
     }
 
     public void turnOn() {
         if (!isBroken()) {
-            isSwitchOn = true;
+            isOn = true;
         }
     }
 
     public void turnOff() {
-        isSwitchOn = false;
+        isOn = false;
     }
 
     public boolean isBroken() {
@@ -49,7 +38,7 @@ public class LightBulb {
 
     public void brokeBulb() {
         isBroken = true;
-        isSwitchOn = false;
+        isOn = false;
     }
 
     public void fixBulb() {
@@ -58,7 +47,7 @@ public class LightBulb {
 
     public void showState() {
         System.out.println("Цвет лампочки: " + color.toString());
-        if (isSwitchOn) {
+        if (isOn) {
             System.out.println("Лампочка работает");
         } else {
             if (isBroken) {
