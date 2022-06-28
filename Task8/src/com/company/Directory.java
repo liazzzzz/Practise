@@ -24,9 +24,8 @@ public class Directory extends File {
 
     public void update() {
         for (int i = 0; i < filesAndDirectories.size(); i++) {
-            if (!filesAndDirectories.get(i).getPath().contains(path)) {
+            if (!(filesAndDirectories.get(i).getPath().equals(path + "/" + filesAndDirectories.get(i).getName()))) {
                 filesAndDirectories.remove(filesAndDirectories.get(i));
-                // добоавить файл в новый каталог
             }
         }
     }
