@@ -4,10 +4,7 @@ public class File {
 
     public String name;
     public String path;
-    protected Long size;
-
-    public File() {
-    }
+    public Long size;
 
     public File(String name, Long size) {
         this.name = name;
