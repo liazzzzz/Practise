@@ -2,15 +2,16 @@ package com.company;
 
 public class File {
 
-    private String name;
-    private Long size;
-    private String type;
-    private String location;
+    public String name;
+    public String path;
+    protected Long size;
 
-    public File(String name, Long size, String type){
+    public File() {
+    }
+
+    public File(String name, Long size) {
         this.name = name;
         this.size = size;
-        this.type = type;
     }
 
     public String getName() {
@@ -19,6 +20,9 @@ public class File {
 
     public void setName(String name) {
         this.name = name;
+        int index = getPath().lastIndexOf("/");
+        String oldName = getPath().substring(index + 1);
+        path = getPath().replace(oldName, name);
     }
 
     public Long getSize() {
@@ -29,24 +33,15 @@ public class File {
         this.size = size;
     }
 
-    public String getType() {
-        return type;
+    public String getPath() {
+        return path;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getPath(){
-        return getLocation() + "/" + getName() + getType();
+    public void setPath(String path) {
+        this.path = path;
+        int index = getPath().lastIndexOf("/");
+        String fileName = getPath().substring(index + 1);
+        setName(fileName);
     }
 
 }

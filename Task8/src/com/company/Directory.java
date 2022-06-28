@@ -1,57 +1,40 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Directory {
+public class Directory extends File {
 
-    private String name;
-    private String location;
+    public ArrayList<File> filesAndDirectories = new ArrayList<>();
 
-    public List<File> listOfFiles = new ArrayList<>(); // список файлов в каталоге
-    public List<Directory> listOfDirectories = new ArrayList<>(); // подкаталоги
-
-    public Directory (String name, String location){
+    public Directory(String name, String path) {
         this.name = name;
-        this.location = location;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getPath(){
-        return getLocation() + "/" + getName();
+        this.path = path;
     }
 
     public void add(File file){
-        listOfFiles.add(file);
-        file.setLocation(getPath());
+        if (file.getPath() == null){
+            filesAndDirectories.add(file);
+            file.path = path + "/" + file.name;
+        } else {
+             System.out.println("Скопируйте файл, чтобы добавить");
+//            File file_copy = new File(file.name, file.size, file.type);
+//            add(file_copy);
+        }
     }
 
-    public void add(Directory directory){
-        listOfDirectories.add(directory);
+    public void update(){
+        for (int i = 0; i < filesAndDirectories.size(); i++){
+            if (!filesAndDirectories.get(i).getPath().contains(path)){
+                filesAndDirectories.remove(filesAndDirectories.get(i));
+            }
+        }
     }
 
+    @Override
     public Long getSize() {
         Long size = 0L;
-        for (int i = 0; i < listOfFiles.size(); i++){
-            size += listOfFiles.get(i).getSize();
-        }
-        for (int i = 0; i < listOfDirectories.size(); i++){
-            size += listOfDirectories.get(i).getSize();
+        for (int i = 0; i < filesAndDirectories.size(); i++) {
+            size += filesAndDirectories.get(i).getSize();
         }
         return size;
     }
