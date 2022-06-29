@@ -4,39 +4,32 @@ import java.util.ArrayList;
 
 public class Directory extends File {
 
-    public ArrayList<File> filesAndDirectories = new ArrayList<>();
+    private ArrayList<File> filesAndDirectories = new ArrayList<>();
 
-    public Directory(String name, String path) {
-        super(name, 0L);
-        this.path = path;
+    public Directory(String name, Directory parentFile) {
+        super(name, 0L, parentFile);
+        parentFile.add(this);
     }
 
-    public void add(File file) {
-        if (file.getPath() == null) {
-            filesAndDirectories.add(file);
-            file.path = path + "/" + file.name;
-        } else {
-            System.out.println("Скопируйте файл, чтобы добавить");
-//            File file_copy = new File(file.name, file.size, file.type);
-//            add(file_copy);
-        }
+    public void add(File file){
+        filesAndDirectories.add(file);
     }
 
-    public void update() {
-        for (int i = 0; i < filesAndDirectories.size(); i++) {
-            if (!(filesAndDirectories.get(i).getPath().equals(path + "/" + filesAndDirectories.get(i).getName()))) {
-                filesAndDirectories.remove(filesAndDirectories.get(i));
-            }
-        }
+    public void remove(File file){
+        filesAndDirectories.remove(file);
     }
 
     @Override
     public Long getSize() {
         Long size = 0L;
-        for (int i = 0; i < filesAndDirectories.size(); i++) {
+        for (int i = 0; i < filesAndDirectories.size(); i++){
             size += filesAndDirectories.get(i).getSize();
         }
         return size;
+    }
+
+    public String getPath(){
+        return parentFile.getPath() + "/" + getName();
     }
 
 }

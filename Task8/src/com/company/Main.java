@@ -4,17 +4,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Directory directory = new Directory("new", "c:/documents/new");
-        File file1 = new File("file1.txt", 3L);
-        directory.add(file1);
+        Directory root = new Directory("c:", null); // корневой каталог
 
-        file1.setPath("c:/bla/dog.txt");
-        directory.update();
+        Directory directory = new Directory("catalog1", root);
+        TextFile textFile = new TextFile("cat", 1L, directory);
 
-        System.out.println(file1.getSize());
-        System.out.println(file1.getPath());
-        System.out.println(directory.getPath());
-        System.out.println(directory.getSize());
+        textFile.getPath();
+        textFile.getSize();
+        directory.getPath();
+        directory.getSize();
 
     }
 }
