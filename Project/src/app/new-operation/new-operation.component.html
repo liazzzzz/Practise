@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Новая операция</h1>
+
+  <form [formGroup]="form">
+    <div>
+      <input type="radio" formControlName="type" name="type" value="deposit" >Пополнение
+      <input type="radio" formControlName="type" name="type" value="withdraw" >Расход
+    </div>
+    <div>
+      <p>Сумма: <input class="search" formControlName="sum" /></p>
+      <span class="helper-text red-text" *ngIf="form.get('sum')?.invalid && form.get('sum')?.touched">
+      Поле заполнено не корректно
+    </span>
+    </div>
+    <div>
+      <p>Заметка: <input class="search" formControlName="note" /></p>
+    </div>
+    <!--  <div>-->
+    <!--    <p>Дата: <input type="date" nformControlName="date"></p>-->
+    <!--  </div>-->
+    <button class="btn btn--mod--calc" type="button" (click)="create()" [disabled]="!form.valid" routerLink="/operations">Сохранить</button>
+  </form>
+
+  <button class="btn btn--mod" type="button" (click)="goBack()">Назад</button>
+
+</div>
+

@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>История операций</h1>
+
+  <p>Остаток:</p>{{ getBalance() }}₽
+  <p class="green-text">Доходы: {{ getDeposit() }}₽</p>
+  <p class="red-text">Расходы: -{{ getWithdraw() }}₽</p>
+
+  <div><button class="btn btn--mod" type="button" (click)="goBack()">Назад</button> </div>
+
+  <div class="divider">Все операции:</div>
+  <div>
+    <div *ngIf="operations.length">
+      <div class="operation" *ngFor='let operation of operations'>
+        <div routerLink="/operation/{{operation.id}}">
+          <span class="operation_value">{{ operation.sum }}₽</span>
+          <span class="operation_value">{{ operation.note }}</span>
+          <span class="operation_value">{{ operation.createdAt | date: 'dd/MM/yyyy'}}</span>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!operations.length">
+      История операций пуста
+    </div>
+
+  </div>
+
+</div>
+
+

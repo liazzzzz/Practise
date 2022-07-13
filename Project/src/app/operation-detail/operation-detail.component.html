@@ -1,0 +1,17 @@
+<div class="container">
+  <div *ngIf="operation">
+
+    <!--  <div>Дата операции: {{operation.createdAt.getDate()+'.'+(operation.createdAt.getMonth()+1)+'.'+operation.createdAt.getFullYear()}}</div>-->
+    <div>Дата операции: {{operation.createdAt | date: 'dd/MM/yyyy'}}
+      <h3 *ngIf="operation.note.length">Заметка: {{operation.note}}</h3>
+      <div>
+        <label>Сумма: </label>
+        <input class="search" [(ngModel)]="operation.sum">
+      </div>
+    </div>
+
+    <button class="btn btn--mod--calc" type="button" (click)="save()">Сохранить</button>
+
+    <button class="btn btn--mod"  type="button" (click)="goBack()">Назад</button>
+</div>
+
